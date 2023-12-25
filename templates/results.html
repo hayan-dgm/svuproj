@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            height: 100vh;
+            margin: 400px,20px;
+            padding: 100px 100px;
+            overflow: auto;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .button-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 100%;
+            max-width: 300px;
+        }
+        .button {
+            font-size: 20px;
+            cursor: pointer;
+            padding: 10px 24px;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+        }
+        .button:hover {background-color: #3e8e41}
+        .button:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+        .result-group {
+            border: 1px solid #333;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        b {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    {% if vector %}
+        {% if results %}
+            <h1>Search Results</h1>
+            {% for result in results %}
+                <div class="result-group">
+                    <h2>{{ result["title"] }}</h2>
+                    <div>
+                        {% for s in result["sentence"] %}
+                        <p>{{ s|safe }}</p>
+                        {% endfor %}
+                    </div>
+                    <p>{{result["rank"]}}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+                <h1>No Results Found</h1>
+        {% endif %}
+    {% else %}
+        {% if results %}
+            <h1>Search Results</h1>
+            {% for result in results %}
+                <div class="result-group">
+                    <h2>{{ result["title"] }}</h2>
+                    <p>{{ result["path"] }}</p>
+                    <div class="sentence-group">
+                        {{ result["highlight"]|safe }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h1>No Results Found</h1>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
