@@ -4,6 +4,8 @@ from whoosh.index import open_dir
 from whoosh import scoring
 from whoosh.qparser import QueryParser, OrGroup, AndGroup
 from search_vector import search as srch
+from search_vector import listFiles as listFiles
+
 import glob
 
 import subprocess
@@ -93,6 +95,7 @@ def search():
         raise ValueError("Invalid model selected")
 
     if isVector:
+        listFiles()
         results = srch(query,threshold=threshold)
         results_list = []
         
