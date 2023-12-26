@@ -131,6 +131,7 @@ def search(query, threshold = 0.1):
     results = {}
 
     for document_number, score in sorted(enumerate(sims), key=lambda x: x[1], reverse=True):
+        print(len(filenames))
         if score > threshold:  
             title = filenames[document_number]
             if title not in results:
