@@ -3,7 +3,7 @@ import os
 from docx import Document
 
 
-directory = 'documents\'
+directory = 'documents/'
 
 
 def extract_text_from_docx(filename):
