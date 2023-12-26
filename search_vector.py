@@ -90,29 +90,30 @@ def highlight_terms(text, terms):
 
 documents = []
 filenames = []  
-for filename in os.listdir(directory):
-    if filename.endswith('.docx'):
-        document_text = extract_text_from_docx(os.path.join(directory, filename))
-        sentences = sent_tokenize(document_text)  
-        documents.extend(sentences)  
-        filenames.extend([filename] * len(sentences))  
+def listFiles():
+    for filename in os.listdir(directory):
+        if filename.endswith('.docx'):
+            document_text = extract_text_from_docx(os.path.join(directory, filename))
+            sentences = sent_tokenize(document_text)  
+            documents.extend(sentences)  
+            filenames.extend([filename] * len(sentences))  
 
 
-texts = [[word for word in document.lower().split()] for document in documents]
+    texts = [[word for word in document.lower().split()] for document in documents]
 
 
-dictionary = corpora.Dictionary(texts)
+    dictionary = corpora.Dictionary(texts)
 
 
-corpus = [dictionary.doc2bow(text) for text in texts]
+    corpus = [dictionary.doc2bow(text) for text in texts]
 
 
-tfidf = models.TfidfModel(corpus)
+    tfidf = models.TfidfModel(corpus)
 
 
-dictionary.save('tmp/dictionary.dict')
-corpora.MmCorpus.serialize('tmp/corpus.mm', corpus)
-tfidf.save("tmp/model.tfidf")
+    dictionary.save('tmp/dictionary.dict')
+    corpora.MmCorpus.serialize('tmp/corpus.mm', corpus)
+    tfidf.save("tmp/model.tfidf")
 
 def search(query, threshold = 0.1):
     
