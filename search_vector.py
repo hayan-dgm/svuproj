@@ -71,6 +71,8 @@ from docx import Document
 import os
 from nltk.tokenize import sent_tokenize
 import re
+import nltk
+nltk.download('punkt')
 
 
 directory = 'documents/'
