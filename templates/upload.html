@@ -50,7 +50,12 @@
         <label for="documents">Upload documents:</label><br>
         <input type="file" id="documents" name="documents" multiple><br><br>
         <label for="language">Set document language:</label><br>
-        <input type="text" id="language" name="language"><br><br>
+        <label for="language">Choose language:</label><br>
+        <select id="language" name="language">
+            <option value="Arabic">العربية</option>
+            <option value="English">English</option>
+            <!-- Add more options as needed -->
+        </select><br>
         <label for="algorithm">Choose weighing algorithm:</label><br>
         <select id="algorithm" name="algorithm">
             <option value="TF_IDF">TF_IDF</option>
